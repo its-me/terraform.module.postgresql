@@ -48,3 +48,30 @@ locals {
   instance_private_ip      = var.create ? google_sql_database_instance.this[0].private_ip_address : data.google_sql_database_instance.this[0].private_ip_address
   instance_self_link       = var.create ? google_sql_database_instance.this[0].self_link : data.google_sql_database_instance.this[0].self_link
 }
+
+# Each caller manages its own database/user on the shared instance, independent of
+# whether it owns the instance itself (var.create). Leave database_name unset for a
+# caller that only needs the instance (e.g. to read outputs) without a database.
+resource "random_password" "database" {
+  count = var.database_name != null ? 1 : 0
+
+  length  = 32
+  special = false
+}
+
+resource "google_sql_database" "this" {
+  count = var.database_name != null ? 1 : 0
+
+  name     = var.database_name
+  project  = var.project_id
+  instance = local.instance_name
+}
+
+resource "google_sql_user" "this" {
+  count = var.database_name != null ? 1 : 0
+
+  name     = var.database_user
+  project  = var.project_id
+  instance = local.instance_name
+  password = random_password.database[0].result
+}

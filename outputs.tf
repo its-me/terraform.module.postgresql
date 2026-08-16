@@ -22,3 +22,19 @@ output "instance_self_link" {
   description = "Self link of the shared Cloud SQL instance."
   value       = local.instance_self_link
 }
+
+output "database_name" {
+  description = "Name of the Postgres database created for this caller, if any."
+  value       = try(google_sql_database.this[0].name, null)
+}
+
+output "database_user" {
+  description = "Name of the Postgres user created for this caller, if any."
+  value       = try(google_sql_user.this[0].name, null)
+}
+
+output "database_password" {
+  description = "Password of the Postgres user created for this caller, if any."
+  value       = try(random_password.database[0].result, null)
+  sensitive   = true
+}

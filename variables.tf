@@ -60,3 +60,15 @@ variable "labels" {
   type        = map(string)
   default     = {}
 }
+
+variable "database_name" {
+  description = "Name of the Postgres database to create for this caller on the shared instance. Leave null to skip managing a database/user."
+  type        = string
+  default     = null
+}
+
+variable "database_user" {
+  description = "Name of the Postgres user to create for this caller. Required when database_name is set."
+  type        = string
+  default     = null
+}
