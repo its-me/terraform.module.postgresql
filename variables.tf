@@ -28,7 +28,7 @@ variable "network_id" {
 variable "database_version" {
   description = "Postgres version for the instance. Only used when create = true."
   type        = string
-  default     = "POSTGRES_16"
+  default     = "POSTGRES_18"
 }
 
 variable "tier" {
