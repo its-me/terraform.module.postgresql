@@ -34,7 +34,7 @@ variable "database_version" {
 variable "tier" {
   description = "Cloud SQL machine tier. Only used when create = true."
   type        = string
-  default     = "db-custom-1-3840"
+  default     = "db-f1-micro"
 }
 
 variable "availability_type" {
@@ -46,7 +46,7 @@ variable "availability_type" {
 variable "disk_size_gb" {
   description = "Cloud SQL disk size in GB. Only used when create = true."
   type        = number
-  default     = 20
+  default     = 10
 }
 
 variable "deletion_protection" {
