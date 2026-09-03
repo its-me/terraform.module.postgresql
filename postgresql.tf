@@ -17,7 +17,7 @@ resource "google_sql_database_instance" "this" {
   settings {
     edition           = var.edition
     tier              = var.tier
-    availability_type = var.availability_type
+    availability_type = "ZONAL" # no HA replica
     disk_size         = var.disk_size_gb
     disk_autoresize   = true
 
