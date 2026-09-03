@@ -15,6 +15,7 @@ resource "google_sql_database_instance" "this" {
   deletion_protection = var.deletion_protection
 
   settings {
+    edition           = var.edition
     tier              = var.tier
     availability_type = var.availability_type
     disk_size         = var.disk_size_gb

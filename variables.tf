@@ -31,6 +31,12 @@ variable "database_version" {
   default     = "POSTGRES_18"
 }
 
+variable "edition" {
+  description = "Cloud SQL edition: ENTERPRISE or ENTERPRISE_PLUS. Shared-core tiers (e.g. db-f1-micro) are only valid under ENTERPRISE. Only used when create = true."
+  type        = string
+  default     = "ENTERPRISE"
+}
+
 variable "tier" {
   description = "Cloud SQL machine tier. Only used when create = true."
   type        = string
