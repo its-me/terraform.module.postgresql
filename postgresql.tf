@@ -48,6 +48,7 @@ locals {
   instance_connection_name = var.create ? google_sql_database_instance.this[0].connection_name : data.google_sql_database_instance.this[0].connection_name
   instance_private_ip      = var.create ? google_sql_database_instance.this[0].private_ip_address : data.google_sql_database_instance.this[0].private_ip_address
   instance_self_link       = var.create ? google_sql_database_instance.this[0].self_link : data.google_sql_database_instance.this[0].self_link
+  instance_port            = var.port
 }
 
 # Each caller manages its own database/user on the shared instance, independent of

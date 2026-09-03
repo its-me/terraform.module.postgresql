@@ -31,6 +31,12 @@ variable "database_version" {
   default     = "POSTGRES_18"
 }
 
+variable "port" {
+  description = "Port the Postgres instance listens on. Cloud SQL doesn't expose this as a resource attribute; fixed at 5432 for Postgres."
+  type        = number
+  default     = 5432
+}
+
 variable "edition" {
   description = "Cloud SQL edition: ENTERPRISE or ENTERPRISE_PLUS. Shared-core tiers (e.g. db-f1-micro) are only valid under ENTERPRISE. Only used when create = true."
   type        = string

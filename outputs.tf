@@ -23,6 +23,11 @@ output "instance_self_link" {
   value       = local.instance_self_link
 }
 
+output "port" {
+  description = "Port the Postgres instance listens on."
+  value       = local.instance_port
+}
+
 output "database_name" {
   description = "Name of the Postgres database created for this caller, if any."
   value       = try(google_sql_database.this[0].name, null)
