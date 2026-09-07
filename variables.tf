@@ -61,8 +61,14 @@ variable "disk_size_gb" {
   default     = 10
 }
 
+variable "backup_retained_count" {
+  description = "Number of automated backups to retain. Only used when create = true."
+  type        = number
+  default     = 30
+}
+
 variable "deletion_protection" {
-  description = "Whether to block destruction of the instance via Terraform. Only used when create = true."
+  description = "Whether to block destruction of the instance, both via Terraform (deletion_protection) and at the GCP API level regardless of how deletion is attempted (settings.deletion_protection_enabled). Only used when create = true."
   type        = bool
   default     = true
 }

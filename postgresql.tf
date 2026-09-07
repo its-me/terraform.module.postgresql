@@ -15,11 +15,12 @@ resource "google_sql_database_instance" "this" {
   deletion_protection = var.deletion_protection
 
   settings {
-    edition           = var.edition
-    tier              = var.tier
-    availability_type = var.availability_type
-    disk_size         = var.disk_size_gb
-    disk_autoresize   = true
+    edition                     = var.edition
+    tier                        = var.tier
+    availability_type           = var.availability_type
+    disk_size                   = var.disk_size_gb
+    disk_autoresize             = true
+    deletion_protection_enabled = var.deletion_protection
 
     ip_configuration {
       ipv4_enabled    = false
@@ -29,6 +30,10 @@ resource "google_sql_database_instance" "this" {
     backup_configuration {
       enabled                        = true
       point_in_time_recovery_enabled = true
+
+      backup_retention_settings {
+        retained_backups = var.backup_retained_count
+      }
     }
 
     user_labels = var.labels
