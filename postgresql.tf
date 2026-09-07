@@ -36,6 +36,14 @@ resource "google_sql_database_instance" "this" {
       }
     }
 
+    dynamic "database_flags" {
+      for_each = var.max_connections != null ? [var.max_connections] : []
+      content {
+        name  = "max_connections"
+        value = tostring(database_flags.value)
+      }
+    }
+
     user_labels = var.labels
   }
 }

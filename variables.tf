@@ -61,6 +61,12 @@ variable "disk_size_gb" {
   default     = 10
 }
 
+variable "max_connections" {
+  description = "Override for the max_connections database flag. Leave null to use Cloud SQL's memory-based default (25 for db-f1-micro). Only used when create = true. Note this doesn't add memory -- raising it lets more Postgres backends start, each with real per-connection overhead, so it trades connection-limit errors for OOM risk under simultaneous heavy load on small tiers."
+  type        = number
+  default     = null
+}
+
 variable "backup_retained_count" {
   description = "Number of automated backups to retain. Only used when create = true."
   type        = number
